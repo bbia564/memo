@@ -27,17 +27,6 @@ class OtherPage extends GetView<OtherController> {
           decoration: AppStyle.defDecoration,
           child: Column(
             children: [
-              ListTile(
-                title: Text("Privacy",
-                    style: TextStyle(
-                        fontSize: 14.sp,
-                        color: const Color(0xFF0F0F0F),
-                        fontWeight: FontWeight.w400)),
-                trailing: const Icon(Icons.arrow_forward_ios, color: Color(0xFFAAAAAA), size: 14),
-                onTap: () {
-                  controller.onPrivacy(context);
-                },
-              ),
               const Divider(indent:16,endIndent:20,height: 1,),
               ListTile(
                 title: Text("About",

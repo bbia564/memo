@@ -41,7 +41,7 @@ class OtherController extends GetxController {
               ClipRRect(
                   borderRadius: const BorderRadius.all(Radius.circular(10)),
                   child: Image.asset(
-                    "assets/images/ic_launcher.png",
+                    "assets/images/am.png",
                     width: 70,
                   )),
               10.verticalSpace,

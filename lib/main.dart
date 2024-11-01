@@ -5,21 +5,31 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:speech_memo/pages/four/budget_four_binding.dart';
+import 'package:speech_memo/pages/four/budget_four_view.dart';
+import 'package:speech_memo/pages/home/create/controller.dart';
+import 'package:speech_memo/pages/home/create/create_page.dart';
+import 'package:speech_memo/pages/home/details/details_controller.dart';
+import 'package:speech_memo/pages/home/details/details_page.dart';
+import 'package:speech_memo/pages/home/home_logic.dart';
+import 'package:speech_memo/pages/home/speech/controller.dart';
+import 'package:speech_memo/pages/home/speech/speech_page.dart';
+import 'package:speech_memo/pages/index_tab_page.dart';
+import 'package:speech_memo/pages/other/controller.dart';
 import 'package:speech_memo/res/style.dart';
-import 'package:speech_memo/route/route_config.dart';
 
 
 
 import 'db/db_service.dart';
+import 'entity/ppaok.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Get.putAsync(() => DatabaseService().init());
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
     statusBarColor: Colors.transparent,
-    statusBarIconBrightness: Brightness.dark, // 设置状态栏文字和图标颜色为亮色（白色）
+    statusBarIconBrightness: Brightness.dark,
   ));
-  //禁止横屏
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(const MyApp());
 }
@@ -35,11 +45,11 @@ class MyApp extends StatelessWidget {
       designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
-    ); //支持分屏
+    );
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoute.home,
-      getPages: AppRoute.pages,
+      initialRoute: '/',
+      getPages: Lisa,
       builder: (context, child) {
         
         return MediaQuery(
@@ -57,8 +67,51 @@ class MyApp extends StatelessWidget {
       },
       theme: AppStyle.lightTheme,
       // themeMode: ThemeMode.light,
-      //页面跳转风格
       defaultTransition: Transition.cupertino,
     );
   }
 }
+List<GetPage<dynamic>> Lisa = [
+  GetPage(
+      name: '/',
+      page: () => const BudgetFourView(),
+      binding: BudgetFourBinding()
+  ),
+  GetPage(
+      name: '/home',
+      page: () => const IndexTabPage(),
+      binding: BindingsBuilder(
+            () {
+          Get.put<TTHomeLogic>(TTHomeLogic());
+          Get.put<OtherController>(OtherController());
+        },
+      )),
+  GetPage(
+      name: '/paas',
+      page: () => const DbRewrite(),
+     ),
+  GetPage(
+      name: '/ccc',
+      page: () => const CreatePage(),
+      binding: BindingsBuilder(
+            () {
+          Get.lazyPut<CreateController>(() => CreateController());
+        },
+      )),
+  GetPage(
+      name: '/dddd',
+      page: () => const DetailsPagePage(),
+      binding: BindingsBuilder(
+            () {
+          Get.lazyPut<DetailsController>(() => DetailsController());
+        },
+      )),
+  GetPage(
+      name: '/speech',
+      page: () => const SpeechPage(),
+      binding: BindingsBuilder(
+            () {
+          Get.lazyPut<SpeechController>(() => SpeechController());
+        },
+      )),
+];

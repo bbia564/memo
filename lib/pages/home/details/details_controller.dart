@@ -5,7 +5,6 @@ import 'package:speech_memo/entity/speech_bean.dart';
 import 'package:speech_memo/pages/home/widgets/tip_dialog.dart';
 
 import '../../../db/db_service.dart';
-import '../../../route/route_config.dart';
 import '../home_logic.dart';
 
 class DetailsController extends GetxController {
@@ -45,6 +44,6 @@ class DetailsController extends GetxController {
     });
   }
   toSpeech(){
-    Get.toNamed(AppRoute.speech, arguments: {"bean": bean});
+    Get.toNamed('/speech', arguments: {"bean": bean});
   }
 }

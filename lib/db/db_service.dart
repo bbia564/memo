@@ -97,7 +97,6 @@ class DatabaseService extends GetxService {
 
   Future<List<SpeechBean>> getAllSpeeches() async {
     var result = await db.query('speech', orderBy: 'id DESC');
-    debugPrint(result.toString());
     return result.map((e) => SpeechBean.fromJson(e)).toList();
   }
 }

@@ -1,9 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:speech_memo/pages/home/widgets/tip_dialog.dart';
-import 'package:speech_memo/route/route_config.dart';
 import '../../db/db_service.dart';
 import '../../entity/speech_bean.dart';
 
@@ -38,9 +35,9 @@ class TTHomeLogic extends GetxController {
   }
 
   toDetails(SpeechBean bean) {
-    Get.toNamed(AppRoute.ddd, arguments: {"bean": bean});
+    Get.toNamed('/dddd', arguments: {"bean": bean});
   }
   toADD() {
-    Get.toNamed(AppRoute.ccc);
+    Get.toNamed('/ccc');
   }
 }

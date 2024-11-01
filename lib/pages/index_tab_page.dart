@@ -5,7 +5,6 @@ import 'package:lazy_load_indexed_stack/lazy_load_indexed_stack.dart';
 import 'package:speech_memo/pages/other/other_page.dart';
 import 'package:speech_memo/res/colors.dart';
 
-import '../route/route_config.dart';
 import 'home/home_page.dart';
 
 class IndexTabPage extends StatefulWidget {
@@ -40,7 +39,7 @@ class _HomePageState extends State<IndexTabPage> {
             elevation: 0,
             shape: const OvalBorder(),
             onPressed: () {
-              Get.toNamed(AppRoute.ccc);
+              Get.toNamed('/ccc');
             },
             child: Image.asset(
               "assets/images/ic_bottom_add.png",
